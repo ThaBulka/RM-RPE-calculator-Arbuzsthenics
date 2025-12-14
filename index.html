@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1RM Calculator - Arbuzsthenics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Arbuzsthenics 1RM Calculator</h1>
+            <p class="subtitle">Calculate your One Rep Max using Epley, Brzycki, and Lander formulas</p>
+        </header>
+
+        <div class="calculator-card">
+            <form id="rm-form">
+                <div class="input-group">
+                    <label for="movement-type">Movement Type</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="movement-type" value="regular" checked>
+                            <span>Regular Lift</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="movement-type" value="bodyweight">
+                            <span>Bodyweight Movement</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group" id="bodyweight-group" style="display: none;">
+                    <label for="bodyweight">Your Bodyweight</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="bodyweight" step="0.5" min="0">
+                        <span class="unit-display" id="bodyweight-unit">kg</span>
+                    </div>
+                    <small>Enter your bodyweight (uses same unit as weight lifted)</small>
+                </div>
+
+                <div class="input-group">
+                    <label for="weight" id="weight-label">Weight Lifted</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="weight" step="0.5" min="0" value="0" required>
+                        <select id="unit">
+                            <option value="kg">kg</option>
+                            <option value="lbs">lbs</option>
+                        </select>
+                    </div>
+                    <small id="weight-description">Total weight lifted</small>
+                </div>
+
+                <div class="input-group">
+                    <label for="reps">Number of Reps Performed</label>
+                    <input type="number" id="reps" min="1" max="20" required>
+                    <small>Enter reps actually performed</small>
+                </div>
+
+                <div class="input-group">
+                    <label for="rir">RIR (Reps in Reserve)</label>
+                    <input type="number" id="rir" min="0" max="10" value="0" required>
+                    <small>How many more reps could you have done? (0 = failure)</small>
+                </div>
+
+                <button type="submit" class="calculate-btn">Calculate 1RM</button>
+            </form>
+
+            <div id="results" class="results hidden">
+                <h2>Your Estimated 1RM</h2>
+
+                <div class="result-wrapper">
+                    <div class="result-card clickable" data-formula="epley">
+                        <h3>Epley Formula</h3>
+                        <p class="formula-description">1RM = Weight � (1 + Reps/30)</p>
+                        <div class="result-value" id="epley-result">-</div>
+                        <p class="click-hint">Click to see RPE table</p>
+                    </div>
+                    <div id="rpe-table-epley-container" class="rpe-table-slot"></div>
+                </div>
+
+                <div class="result-wrapper">
+                    <div class="result-card clickable" data-formula="brzycki">
+                        <h3>Brzycki Formula</h3>
+                        <p class="formula-description">1RM = Weight � (36/(37 - Reps))</p>
+                        <div class="result-value" id="brzycki-result">-</div>
+                        <p class="click-hint">Click to see RPE table</p>
+                    </div>
+                    <div id="rpe-table-brzycki-container" class="rpe-table-slot"></div>
+                </div>
+
+                <div class="result-wrapper">
+                    <div class="result-card clickable" data-formula="lander">
+                        <h3>Lander Formula</h3>
+                        <p class="formula-description">1RM = (100 � Weight) / (101.3 - 2.67123 � Reps)</p>
+                        <div class="result-value" id="lander-result">-</div>
+                        <p class="click-hint">Click to see RPE table</p>
+                    </div>
+                    <div id="rpe-table-lander-container" class="rpe-table-slot"></div>
+                </div>
+
+                <div class="result-wrapper">
+                    <div class="result-card average clickable" data-formula="average">
+                        <h3>Average</h3>
+                        <p class="formula-description">Mean of all three formulas</p>
+                        <div class="result-value" id="average-result">-</div>
+                        <p class="click-hint">Click to see RPE table</p>
+                    </div>
+                    <div id="rpe-table-average-container" class="rpe-table-slot"></div>
+                </div>
+
+                <div id="bodyweight-note" class="bodyweight-note hidden">
+                    <p><strong>Bodyweight Movement:</strong> Results show the added weight you can lift for 1 rep (not including your bodyweight)</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Note: These formulas provide estimates. Actual 1RM may vary.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

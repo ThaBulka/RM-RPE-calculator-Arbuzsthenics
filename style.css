@@ -1,0 +1,422 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+.calculator-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 1rem;
+}
+
+.input-with-unit {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group input[type="number"] {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input[type="number"]:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.input-group select {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    min-width: 80px;
+}
+
+.input-group small {
+    display: block;
+    margin-top: 5px;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.radio-label input[type="radio"] {
+    margin-right: 8px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+.radio-label span {
+    color: #555;
+}
+
+.unit-display {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: #f8f9fa;
+    color: #555;
+    font-size: 1rem;
+    min-width: 60px;
+    text-align: center;
+}
+
+.bodyweight-note {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    border-radius: 8px;
+}
+
+.bodyweight-note.hidden {
+    display: none;
+}
+
+.bodyweight-note p {
+    margin: 0;
+    color: #856404;
+    font-size: 0.9rem;
+}
+
+.result-card.clickable {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.result-card.clickable:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.click-hint {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #667eea;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.result-wrapper {
+    margin-bottom: 15px;
+}
+
+.rpe-table-slot {
+    margin-top: 15px;
+}
+
+.rpe-table-container {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 25px;
+    border: 2px solid #e0e0e0;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.rpe-table-header {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.rpe-table-header h2 {
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.rpe-subtitle {
+    color: #666;
+    font-size: 1rem;
+}
+
+.rpe-subtitle .formula-name,
+.rpe-subtitle .formula-1rm {
+    font-weight: 600;
+    color: #764ba2;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #999;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s, color 0.3s;
+}
+
+.close-btn:hover {
+    background: #f0f0f0;
+    color: #667eea;
+}
+
+.table-wrapper {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.rpe-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    table-layout: fixed;
+}
+
+.rpe-table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.rpe-table th {
+    padding: 8px 4px;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 6.5%;
+}
+
+.rpe-table th:first-child,
+.rpe-table th:nth-child(2) {
+    width: 6%;
+}
+
+.rpe-table th small {
+    display: block;
+    font-size: 0.65rem;
+    opacity: 0.9;
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+.rpe-table tbody tr {
+    transition: background 0.2s;
+}
+
+.rpe-table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.rpe-table tbody tr:hover {
+    background: #e9ecef;
+}
+
+.rpe-table td {
+    padding: 8px 4px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    font-size: 0.75rem;
+}
+
+.rpe-col,
+.rir-col {
+    font-weight: 600;
+    color: #667eea;
+    background: #f0f4ff !important;
+}
+
+.weight-cell {
+    font-family: 'Courier New', monospace;
+    color: #555;
+}
+
+.calculate-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.calculate-btn:active {
+    transform: translateY(0);
+}
+
+.results {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.results.hidden {
+    display: none;
+}
+
+.results h2 {
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.result-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid #667eea;
+}
+
+.result-card.average {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border-left: 4px solid #764ba2;
+}
+
+.result-card h3 {
+    color: #555;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.formula-description {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+.result-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.result-card.average .result-value {
+    color: #764ba2;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+    .rpe-table {
+        font-size: 0.7rem;
+    }
+
+    .rpe-table th,
+    .rpe-table td {
+        padding: 6px 2px;
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .calculator-card {
+        padding: 20px;
+    }
+
+    .result-value {
+        font-size: 1.5rem;
+    }
+
+    .rpe-table-container {
+        padding: 15px;
+    }
+
+    .rpe-table {
+        font-size: 0.6rem;
+    }
+
+    .rpe-table th,
+    .rpe-table td {
+        padding: 4px 1px;
+    }
+}
